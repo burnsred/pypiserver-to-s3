@@ -5,7 +5,15 @@ S3 for an easy static PyPI server.
 
 ## Usage
 
-You need to set some environment variables to make this work:
+First, create an S3 bucket. You'll need to enable S3 website and use the website
+endpoint for the S3 bucket to serve index.html files for URLs ending in /
+
+Note that S3 website does not yet support SSL, so if you need this (it's
+probably a good idea), you should enable a Cloudfront distribution in front of
+the bucket's website endpoint.
+
+Now to run the scripts, you need to set some environment variables to make this
+work:
 
   * `AWS_ACCESS_KEY_ID`: an AWS access key with permission to upload to the
 bucket;
@@ -26,3 +34,4 @@ Place a bunch of packages in a directory and run
 If you need to synchronise down packages, run
 
     bash download-mirror-packages.sh <package_dir>
+
