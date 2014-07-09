@@ -35,3 +35,8 @@ If you need to synchronise down packages, run
 
     bash download-mirror-packages.sh <package_dir>
 
+To add a bunch of packages from a requirements.txt file:
+
+    bash download-requirements <path/requirements.txt> <package_dir>
+
+
