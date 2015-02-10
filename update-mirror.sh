@@ -1,4 +1,4 @@
-# #!/bin/bash
+#!/bin/bash
 
 # Take a mirror
 pypi-server $1 &
