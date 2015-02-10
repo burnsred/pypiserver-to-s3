@@ -1,10 +1,19 @@
-#!/bin/bash
+# #!/bin/bash
 
 # Take a mirror
 pypi-server $1 &
 sleep 1
 wget -mk localhost:8080
 kill %1
+
+# Make lowercase copies of everything
+for PACKAGE in `find localhost:8080/simple -type d`; do
+    PACKAGE_LOWER=`echo "$PACKAGE" | tr '[:upper:]' '[:lower:]'`
+
+    if [ ! -d "$PACKAGE_LOWER" ]; then
+        cp -r "$PACKAGE" "$PACKAGE_LOWER"
+    fi
+done
 
 if [ -z "$DEPLOY_DIRECTORY" ]; then
     S3_UPLOAD_URI=s3://$DEPLOY_BUCKET/
